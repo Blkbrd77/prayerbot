@@ -1,0 +1,298 @@
+{
+  "quotes": [
+    {
+      "text": "Thou hast made us for thyself, O Lord, and our heart is restless until it finds its rest in thee.",
+      "author": "Augustine of Hippo",
+      "source": "Confessions",
+      "theme": "longing"
+    },
+    {
+      "text": "Faith is to believe what you do not see; the reward of this faith is to see what you believe.",
+      "author": "Augustine of Hippo",
+      "source": "Sermones",
+      "theme": "faith"
+    },
+    {
+      "text": "The measure of love is to love without measure.",
+      "author": "Augustine of Hippo",
+      "source": "attributed",
+      "theme": "love"
+    },
+    {
+      "text": "To one who has faith, no explanation is necessary. To one without faith, no explanation is possible.",
+      "author": "Thomas Aquinas",
+      "source": "attributed",
+      "theme": "faith"
+    },
+    {
+      "text": "The things that we love tell us what we are.",
+      "author": "Thomas Aquinas",
+      "source": "attributed",
+      "theme": "love"
+    },
+    {
+      "text": "Grace does not destroy nature but perfects it.",
+      "author": "Thomas Aquinas",
+      "source": "Summa Theologiae",
+      "theme": "grace"
+    },
+    {
+      "text": "I believe in Christianity as I believe that the sun has risen: not only because I see it, but because by it I see everything else.",
+      "author": "C.S. Lewis",
+      "source": "Is Theology Poetry?",
+      "theme": "faith"
+    },
+    {
+      "text": "You can never get a cup of tea large enough or a book long enough to suit me.",
+      "author": "C.S. Lewis",
+      "source": "attributed",
+      "theme": "joy"
+    },
+    {
+      "text": "Hardships often prepare ordinary people for an extraordinary destiny.",
+      "author": "C.S. Lewis",
+      "source": "attributed",
+      "theme": "suffering"
+    },
+    {
+      "text": "Humility is not thinking less of yourself, it is thinking of yourself less.",
+      "author": "C.S. Lewis",
+      "source": "Mere Christianity",
+      "theme": "humility"
+    },
+    {
+      "text": "God whispers to us in our pleasures, speaks in our conscience, but shouts in our pains: it is his megaphone to rouse a deaf world.",
+      "author": "C.S. Lewis",
+      "source": "The Problem of Pain",
+      "theme": "suffering"
+    },
+    {
+      "text": "Cheap grace is the deadly enemy of our Church. We are fighting today for costly grace.",
+      "author": "Dietrich Bonhoeffer",
+      "source": "The Cost of Discipleship",
+      "theme": "grace"
+    },
+    {
+      "text": "When Christ calls a man, he bids him come and die.",
+      "author": "Dietrich Bonhoeffer",
+      "source": "The Cost of Discipleship",
+      "theme": "courage"
+    },
+    {
+      "text": "The test of the morality of a society is what it does for its children.",
+      "author": "Dietrich Bonhoeffer",
+      "source": "attributed",
+      "theme": "love"
+    },
+    {
+      "text": "We pray for the big things and forget to give thanks for the ordinary, small (and yet really not small) gifts.",
+      "author": "Dietrich Bonhoeffer",
+      "source": "Letters and Papers from Prison",
+      "theme": "prayer"
+    },
+    {
+      "text": "The function of prayer is not to influence God, but rather to change the nature of the one who prays.",
+      "author": "Soren Kierkegaard",
+      "source": "Purity of Heart Is to Will One Thing",
+      "theme": "prayer"
+    },
+    {
+      "text": "Life can only be understood backwards; but it must be lived forwards.",
+      "author": "Soren Kierkegaard",
+      "source": "Journals",
+      "theme": "faith"
+    },
+    {
+      "text": "The tyrant dies and his rule is over; the martyr dies and his rule begins.",
+      "author": "Soren Kierkegaard",
+      "source": "Journals",
+      "theme": "courage"
+    },
+    {
+      "text": "There is a God-shaped vacuum in the heart of each man which cannot be satisfied by any created thing but only by God the Creator.",
+      "author": "Blaise Pascal",
+      "source": "Pensees",
+      "theme": "longing"
+    },
+    {
+      "text": "The heart has its reasons which reason knows nothing of.",
+      "author": "Blaise Pascal",
+      "source": "Pensees",
+      "theme": "faith"
+    },
+    {
+      "text": "All of humanity's problems stem from man's inability to sit quietly in a room alone.",
+      "author": "Blaise Pascal",
+      "source": "Pensees",
+      "theme": "prayer"
+    },
+    {
+      "text": "The Christian ideal has not been tried and found wanting; it has been found difficult and left untried.",
+      "author": "G.K. Chesterton",
+      "source": "What's Wrong with the World",
+      "theme": "truth"
+    },
+    {
+      "text": "Joy, which was the small publicity of the pagan, is the gigantic secret of the Christian.",
+      "author": "G.K. Chesterton",
+      "source": "Orthodoxy",
+      "theme": "joy"
+    },
+    {
+      "text": "The riddles of God are more satisfying than the solutions of man.",
+      "author": "G.K. Chesterton",
+      "source": "Introduction to the Book of Job",
+      "theme": "truth"
+    },
+    {
+      "text": "A Bible that is falling apart usually belongs to someone who is not.",
+      "author": "Charles Spurgeon",
+      "source": "attributed",
+      "theme": "faith"
+    },
+    {
+      "text": "God is too good to be unkind and He is too wise to be mistaken. And when we cannot trace His hand, we must trust His heart.",
+      "author": "Charles Spurgeon",
+      "source": "attributed",
+      "theme": "trust"
+    },
+    {
+      "text": "Pray and let God worry.",
+      "author": "Martin Luther",
+      "source": "attributed",
+      "theme": "prayer"
+    },
+    {
+      "text": "We are saved by faith alone, but the faith that saves is never alone.",
+      "author": "Martin Luther",
+      "source": "attributed",
+      "theme": "faith"
+    },
+    {
+      "text": "Even if I knew that tomorrow the world would go to pieces, I would still plant my apple tree.",
+      "author": "Martin Luther",
+      "source": "attributed",
+      "theme": "hope"
+    },
+    {
+      "text": "There is not one blade of grass, there is no color in this world that is not intended to make us rejoice.",
+      "author": "John Calvin",
+      "source": "Commentaries on the Prophet Jeremiah",
+      "theme": "joy"
+    },
+    {
+      "text": "Man's nature, so to speak, is a perpetual factory of idols.",
+      "author": "John Calvin",
+      "source": "Institutes of the Christian Religion",
+      "theme": "humility"
+    },
+    {
+      "text": "We can do nothing unless divine strength is given us from above; but we must act as if everything depended on us alone.",
+      "author": "John Calvin",
+      "source": "attributed",
+      "theme": "courage"
+    },
+    {
+      "text": "Let nothing disturb you, let nothing frighten you. All things are passing away: God never changes. Patience obtains all things. Whoever has God lacks nothing; God alone suffices.",
+      "author": "Teresa of Avila",
+      "source": "Bookmark Prayer",
+      "theme": "trust"
+    },
+    {
+      "text": "Christ has no body now but yours. No hands, no feet on earth but yours.",
+      "author": "Teresa of Avila",
+      "source": "attributed",
+      "theme": "courage"
+    },
+    {
+      "text": "All shall be well, and all shall be well, and all manner of thing shall be well.",
+      "author": "Julian of Norwich",
+      "source": "Revelations of Divine Love",
+      "theme": "hope"
+    },
+    {
+      "text": "The greatest honor we can give Almighty God is to live gladly because of the knowledge of his love.",
+      "author": "Julian of Norwich",
+      "source": "Revelations of Divine Love",
+      "theme": "joy"
+    },
+    {
+      "text": "He did not say: You will not be troubled, you will not be belabored, you will not be disquieted; but he said: You will not be overcome.",
+      "author": "Julian of Norwich",
+      "source": "Revelations of Divine Love",
+      "theme": "suffering"
+    },
+    {
+      "text": "What comes into our minds when we think about God is the most important thing about us.",
+      "author": "A.W. Tozer",
+      "source": "The Knowledge of the Holy",
+      "theme": "truth"
+    },
+    {
+      "text": "God never hurries. There are no deadlines against which he must work. Only to know this is to quiet our spirits and relax our nerves.",
+      "author": "A.W. Tozer",
+      "source": "The Knowledge of the Holy",
+      "theme": "trust"
+    },
+    {
+      "text": "The Christian does not think God will love us because we are good, but that God will make us good because He loves us.",
+      "author": "C.S. Lewis",
+      "source": "Mere Christianity",
+      "theme": "grace"
+    },
+    {
+      "text": "God loves each of us as if there were only one of us.",
+      "author": "Augustine of Hippo",
+      "source": "attributed",
+      "theme": "love"
+    },
+    {
+      "text": "He is no fool who gives what he cannot keep to gain that which he cannot lose.",
+      "author": "Jim Elliot",
+      "source": "Journals",
+      "theme": "courage"
+    },
+    {
+      "text": "If you want to judge how well a person understands Christianity, find out how much he makes of the thought of being God's child, and having God as his Father.",
+      "author": "J.I. Packer",
+      "source": "Knowing God",
+      "theme": "grace"
+    },
+    {
+      "text": "God created us for this: to live our lives in a way that makes him look more like the greatness and the beauty and the infinite worth that he really is.",
+      "author": "John Piper",
+      "source": "Don't Waste Your Life",
+      "theme": "truth"
+    },
+    {
+      "text": "Darkness is my closest friend.",
+      "author": "Sons of Korah",
+      "source": "Psalm 88:18",
+      "theme": "suffering"
+    },
+    {
+      "text": "True prayer is neither a mere mental exercise nor a vocal performance. It is far deeper than that. It is spiritual transaction with the Creator of heaven and earth.",
+      "author": "Charles Spurgeon",
+      "source": "Twelve Sermons on Prayer",
+      "theme": "prayer"
+    },
+    {
+      "text": "God does not love us because we are valuable. We are valuable because God loves us.",
+      "author": "Fulton J. Sheen",
+      "source": "attributed",
+      "theme": "love"
+    },
+    {
+      "text": "Joy is the infallible sign of the presence of God.",
+      "author": "Pierre Teilhard de Chardin",
+      "source": "attributed",
+      "theme": "joy"
+    },
+    {
+      "text": "The soul hardly ever realizes it, but whether he is a believer or not, his loneliness is really a homesickness for God.",
+      "author": "Hubert van Zeller",
+      "source": "We Die Standing Up",
+      "theme": "longing"
+    }
+  ]
+}

@@ -1,0 +1,329 @@
+{
+  "verses": [
+    {
+      "reference": "Hebrews 11:1",
+      "text": "Now faith is the substance of things hoped for, the evidence of things not seen.",
+      "theme": "faith"
+    },
+    {
+      "reference": "Romans 10:17",
+      "text": "So then faith cometh by hearing, and hearing by the word of God.",
+      "theme": "faith"
+    },
+    {
+      "reference": "2 Corinthians 5:7",
+      "text": "For we walk by faith, not by sight.",
+      "theme": "faith"
+    },
+    {
+      "reference": "Mark 11:22-23",
+      "text": "And Jesus answering saith unto them, Have faith in God. For verily I say unto you, That whosoever shall say unto this mountain, Be thou removed, and be thou cast into the sea; and shall not doubt in his heart, but shall believe that those things which he saith shall come to pass; he shall have whatsoever he saith.",
+      "theme": "faith"
+    },
+    {
+      "reference": "Matthew 17:20",
+      "text": "And Jesus said unto them, Because of your unbelief: for verily I say unto you, If ye have faith as a grain of mustard seed, ye shall say unto this mountain, Remove hence to yonder place; and it shall remove; and nothing shall be impossible unto you.",
+      "theme": "faith"
+    },
+    {
+      "reference": "James 1:6",
+      "text": "But let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tossed.",
+      "theme": "faith"
+    },
+    {
+      "reference": "Galatians 2:20",
+      "text": "I am crucified with Christ: nevertheless I live; yet not I, but Christ liveth in me: and the life which I now live in the flesh I live by the faith of the Son of God, who loved me, and gave himself for me.",
+      "theme": "faith"
+    },
+    {
+      "reference": "Ephesians 2:8-9",
+      "text": "For by grace are ye saved through faith; and that not of yourselves: it is the gift of God: Not of works, lest any man should boast.",
+      "theme": "faith"
+    },
+    {
+      "reference": "1 Peter 1:8-9",
+      "text": "Whom having not seen, ye love; in whom, though now ye see him not, yet believing, ye rejoice with joy unspeakable and full of glory: Receiving the end of your faith, even the salvation of your souls.",
+      "theme": "faith"
+    },
+    {
+      "reference": "Habakkuk 2:4",
+      "text": "Behold, his soul which is lifted up is not upright in him: but the just shall live by his faith.",
+      "theme": "faith"
+    },
+    {
+      "reference": "Romans 15:13",
+      "text": "Now the God of hope fill you with all joy and peace in believing, that ye may abound in hope, through the power of the Holy Ghost.",
+      "theme": "hope"
+    },
+    {
+      "reference": "Jeremiah 29:11",
+      "text": "For I know the thoughts that I think toward you, saith the Lord, thoughts of peace, and not of evil, to give you an expected end.",
+      "theme": "hope"
+    },
+    {
+      "reference": "Romans 8:28",
+      "text": "And we know that all things work together for good to them that love God, to them who are the called according to his purpose.",
+      "theme": "hope"
+    },
+    {
+      "reference": "Psalm 62:5",
+      "text": "My soul, wait thou only upon God; for my expectation is from him.",
+      "theme": "hope"
+    },
+    {
+      "reference": "Isaiah 40:31",
+      "text": "But they that wait upon the Lord shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint.",
+      "theme": "hope"
+    },
+    {
+      "reference": "Lamentations 3:22-23",
+      "text": "It is of the Lord's mercies that we are not consumed, because his compassions fail not. They are new every morning: great is thy faithfulness.",
+      "theme": "hope"
+    },
+    {
+      "reference": "Psalm 130:5",
+      "text": "I wait for the Lord, my soul doth wait, and in his word do I hope.",
+      "theme": "hope"
+    },
+    {
+      "reference": "Romans 8:24-25",
+      "text": "For we are saved by hope: but hope that is seen is not hope: for what a man seeth, why doth he yet hope for? But if we hope for that we see not, then do we with patience wait for it.",
+      "theme": "hope"
+    },
+    {
+      "reference": "Psalm 42:11",
+      "text": "Why art thou cast down, O my soul? and why art thou disquieted within me? hope thou in God: for I shall yet praise him, who is the health of my countenance, and my God.",
+      "theme": "hope"
+    },
+    {
+      "reference": "Hebrews 6:19",
+      "text": "Which hope we have as an anchor of the soul, both sure and stedfast, and which entereth into that within the veil.",
+      "theme": "hope"
+    },
+    {
+      "reference": "Psalm 31:24",
+      "text": "Be of good courage, and he shall strengthen your heart, all ye that hope in the Lord.",
+      "theme": "hope"
+    },
+    {
+      "reference": "1 Corinthians 13:4-7",
+      "text": "Charity suffereth long, and is kind; charity envieth not; charity vaunteth not itself, is not puffed up, Doth not behave itself unseemly, seeketh not her own, is not easily provoked, thinketh no evil; Rejoiceth not in iniquity, but rejoiceth in the truth; Beareth all things, believeth all things, hopeth all things, endureth all things.",
+      "theme": "love"
+    },
+    {
+      "reference": "John 3:16",
+      "text": "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.",
+      "theme": "love"
+    },
+    {
+      "reference": "1 John 4:19",
+      "text": "We love him, because he first loved us.",
+      "theme": "love"
+    },
+    {
+      "reference": "Romans 8:38-39",
+      "text": "For I am persuaded, that neither death, nor life, nor angels, nor principalities, nor powers, nor things present, nor things to come, Nor height, nor depth, nor any other creature, shall be able to separate us from the love of God, which is in Christ Jesus our Lord.",
+      "theme": "love"
+    },
+    {
+      "reference": "1 John 4:8",
+      "text": "He that loveth not knoweth not God; for God is love.",
+      "theme": "love"
+    },
+    {
+      "reference": "John 15:12-13",
+      "text": "This is my commandment, That ye love one another, as I have loved you. Greater love hath no man than this, that a man lay down his life for his friends.",
+      "theme": "love"
+    },
+    {
+      "reference": "1 Corinthians 13:13",
+      "text": "And now abideth faith, hope, charity, these three; but the greatest of these is charity.",
+      "theme": "love"
+    },
+    {
+      "reference": "Psalm 136:26",
+      "text": "O give thanks unto the God of heaven: for his mercy endureth for ever.",
+      "theme": "love"
+    },
+    {
+      "reference": "Zephaniah 3:17",
+      "text": "The Lord thy God in the midst of thee is mighty; he will save, he will rejoice over thee with joy; he will rest in his love, he will joy over thee with singing.",
+      "theme": "love"
+    },
+    {
+      "reference": "1 John 4:11-12",
+      "text": "Beloved, if God so loved us, we ought also to love one another. No man hath seen God at any time. If we love one another, God dwelleth in us, and his love is perfected in us.",
+      "theme": "love"
+    },
+    {
+      "reference": "Colossians 3:14",
+      "text": "And above all these things put on charity, which is the bond of perfectness.",
+      "theme": "love"
+    },
+    {
+      "reference": "Philippians 4:13",
+      "text": "I can do all things through Christ which strengtheneth me.",
+      "theme": "strength"
+    },
+    {
+      "reference": "Deuteronomy 31:6",
+      "text": "Be strong and of a good courage, fear not, nor be afraid of them: for the Lord thy God, he it is that doth go with thee; he will not fail thee, nor forsake thee.",
+      "theme": "strength"
+    },
+    {
+      "reference": "Joshua 1:9",
+      "text": "Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the Lord thy God is with thee whithersoever thou goest.",
+      "theme": "strength"
+    },
+    {
+      "reference": "Psalm 46:1",
+      "text": "God is our refuge and strength, a very present help in trouble.",
+      "theme": "strength"
+    },
+    {
+      "reference": "2 Timothy 1:7",
+      "text": "For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind.",
+      "theme": "strength"
+    },
+    {
+      "reference": "Nehemiah 8:10",
+      "text": "Then he said unto them, Go your way, eat the fat, and drink the sweet, and send portions unto them for whom nothing is prepared: for this day is holy unto our Lord: neither be ye sorry; for the joy of the Lord is your strength.",
+      "theme": "strength"
+    },
+    {
+      "reference": "Psalm 28:7",
+      "text": "The Lord is my strength and my shield; my heart trusted in him, and I am helped: therefore my heart greatly rejoiceth; and with my song will I praise him.",
+      "theme": "strength"
+    },
+    {
+      "reference": "Isaiah 41:10",
+      "text": "Fear thou not; for I am with thee: be not dismayed; for I am thy God: I will strengthen thee; yea, I will help thee; yea, I will uphold thee with the right hand of my righteousness.",
+      "theme": "strength"
+    },
+    {
+      "reference": "Psalm 18:32",
+      "text": "It is God that girdeth me with strength, and maketh my way perfect.",
+      "theme": "strength"
+    },
+    {
+      "reference": "2 Corinthians 12:9",
+      "text": "And he said unto me, My grace is sufficient for thee: for my strength is made perfect in weakness. Most gladly therefore will I rather glory in my infirmities, that the power of Christ may rest upon me.",
+      "theme": "strength"
+    },
+    {
+      "reference": "Ephesians 6:10",
+      "text": "Finally, my brethren, be strong in the Lord, and in the power of his might.",
+      "theme": "strength"
+    },
+    {
+      "reference": "Philippians 4:6-7",
+      "text": "Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus.",
+      "theme": "peace"
+    },
+    {
+      "reference": "John 14:27",
+      "text": "Peace I leave with you, my peace I give unto you: not as the world giveth, give I unto you. Let not your heart be troubled, neither let it be afraid.",
+      "theme": "peace"
+    },
+    {
+      "reference": "Isaiah 26:3",
+      "text": "Thou wilt keep him in perfect peace, whose mind is stayed on thee: because he trusteth in thee.",
+      "theme": "peace"
+    },
+    {
+      "reference": "Psalm 29:11",
+      "text": "The Lord will give strength unto his people; the Lord will bless his people with peace.",
+      "theme": "peace"
+    },
+    {
+      "reference": "Romans 12:18",
+      "text": "If it be possible, as much as lieth in you, live peaceably with all men.",
+      "theme": "peace"
+    },
+    {
+      "reference": "Colossians 3:15",
+      "text": "And let the peace of God rule in your hearts, to the which also ye are called in one body; and be ye thankful.",
+      "theme": "peace"
+    },
+    {
+      "reference": "Psalm 34:14",
+      "text": "Depart from evil, and do good; seek peace, and pursue it.",
+      "theme": "peace"
+    },
+    {
+      "reference": "Matthew 5:9",
+      "text": "Blessed are the peacemakers: for they shall be called the children of God.",
+      "theme": "peace"
+    },
+    {
+      "reference": "John 16:33",
+      "text": "These things I have spoken unto you, that in me ye might have peace. In the world ye shall have tribulation: but be of good cheer; I have overcome the world.",
+      "theme": "peace"
+    },
+    {
+      "reference": "Psalm 4:8",
+      "text": "I will both lay me down in peace, and sleep: for thou, Lord, only makest me dwell in safety.",
+      "theme": "peace"
+    },
+    {
+      "reference": "Numbers 6:24-26",
+      "text": "The Lord bless thee, and keep thee: The Lord make his face shine upon thee, and be gracious unto thee: The Lord lift up his countenance upon thee, and give thee peace.",
+      "theme": "peace"
+    },
+    {
+      "reference": "Proverbs 3:5-6",
+      "text": "Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.",
+      "theme": "wisdom"
+    },
+    {
+      "reference": "James 1:5",
+      "text": "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.",
+      "theme": "wisdom"
+    },
+    {
+      "reference": "Proverbs 9:10",
+      "text": "The fear of the Lord is the beginning of wisdom: and the knowledge of the holy is understanding.",
+      "theme": "wisdom"
+    },
+    {
+      "reference": "Proverbs 2:6",
+      "text": "For the Lord giveth wisdom: out of his mouth cometh knowledge and understanding.",
+      "theme": "wisdom"
+    },
+    {
+      "reference": "Colossians 3:16",
+      "text": "Let the word of Christ dwell in you richly in all wisdom; teaching and admonishing one another in psalms and hymns and spiritual songs, singing with grace in your hearts to the Lord.",
+      "theme": "wisdom"
+    },
+    {
+      "reference": "Proverbs 4:7",
+      "text": "Wisdom is the principal thing; therefore get wisdom: and with all thy getting get understanding.",
+      "theme": "wisdom"
+    },
+    {
+      "reference": "Ecclesiastes 7:12",
+      "text": "For wisdom is a defence, and money is a defence: but the excellency of knowledge is, that wisdom giveth life to them that have it.",
+      "theme": "wisdom"
+    },
+    {
+      "reference": "Proverbs 16:16",
+      "text": "How much better is it to get wisdom than gold! and to get understanding rather to be chosen than silver!",
+      "theme": "wisdom"
+    },
+    {
+      "reference": "James 3:17",
+      "text": "But the wisdom that is from above is first pure, then peaceable, gentle, and easy to be intreated, full of mercy and good fruits, without partiality, and without hypocrisy.",
+      "theme": "wisdom"
+    },
+    {
+      "reference": "Psalm 111:10",
+      "text": "The fear of the Lord is the beginning of wisdom: a good understanding have all they that do his commandments: his praise endureth for ever.",
+      "theme": "wisdom"
+    },
+    {
+      "reference": "Proverbs 1:7",
+      "text": "The fear of the Lord is the beginning of knowledge: but fools despise wisdom and instruction.",
+      "theme": "wisdom"
+    }
+  ]
+}

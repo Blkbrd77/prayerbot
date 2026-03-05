@@ -1,0 +1,18 @@
+[Unit]
+Description=OpenClaw PrayerBot Gateway
+After=network.target
+
+[Service]
+Type=simple
+# Change 'pi' to the user that will run the gateway
+User=pi
+# Update this path to the directory where you cloned the repo
+WorkingDirectory=/home/pi/prayerbot
+ExecStart=/usr/local/bin/openclaw --profile prayerbot gateway --port 18790
+Restart=on-failure
+RestartSec=5
+# Loads OPENCLAW_PORT and any other env vars from .env
+EnvironmentFile=/home/pi/prayerbot/.env
+
+[Install]
+WantedBy=multi-user.target

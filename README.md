@@ -219,6 +219,15 @@ To disable it (since you review all PRs yourself):
 ## Development
 
 ```bash
+# Create/activate virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Install runtime + development dependencies
+pip install -r requirements.txt -r requirements-dev.txt
+```
+
+```bash
 # Lint
 flake8 .
 

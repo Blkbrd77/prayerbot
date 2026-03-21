@@ -20,6 +20,32 @@ jobs:
           python3 -m pip install --upgrade pip
           pip3 install -r requirements.txt
 
+      - name: Set up cron jobs
+        run: |
+          # Create logs directory if it doesn't exist
+          mkdir -p /home/pi/prayerbot/logs
+          
+          # Function to add cron job if not already present
+          add_cron_job() {
+            local job="$1"
+            crontab -l | grep -F "$job" > /dev/null || (crontab -l; echo "$job") | crontab -
+          }
+          
+          # Daily scripture at 4:00 AM
+          SCRIPTURE_JOB="0 4 * * * cd /home/pi/prayerbot && source .env && /usr/bin/python3 scripture.py >> /home/pi/prayerbot/logs/scripture.log 2>&1"
+          add_cron_job "$SCRIPTURE_JOB"
+          
+          # Daily theologian at 8:00 PM
+          THEOLOGIAN_JOB="0 20 * * * cd /home/pi/prayerbot && source .env && /usr/bin/python3 theologian.py >> /home/pi/prayerbot/logs/theologian.log 2>&1"
+          add_cron_job "$THEOLOGIAN_JOB"
+          
+          # Weekly prayer review on Sundays at 6:00 AM
+          PRAYERLIST_JOB="0 6 * * 0 cd /home/pi/prayerbot && source .env && /usr/bin/python3 prayerlist.py --review >> /home/pi/prayerbot/logs/prayerlist.log 2>&1"
+          add_cron_job "$PRAYERLIST_JOB"
+          
+          # Verify crontab
+          crontab -l
+
       - name: Restart OpenClaw gateway service
         run: |
           sudo systemctl restart openclaw-prayerbot-gateway

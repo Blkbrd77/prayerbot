@@ -146,6 +146,60 @@ class TestGenerateReflection:
         result = theologian.generate_reflection(sample_quote)
         assert result == "How does rest in God feel to you?"
 
+    def test_falls_back_to_responses_on_405(self, sample_quote, monkeypatch):
+        class Chat405:
+            status_code = 405
+
+            def raise_for_status(self):
+                raise theologian.requests.HTTPError("405")
+
+        class ResponsesOK:
+            status_code = 200
+
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"output_text": "  Consider where grace has met you this week.  "}
+
+        calls = {"count": 0}
+
+        def mock_post(*args, **kwargs):
+            calls["count"] += 1
+            if calls["count"] == 1:
+                return Chat405()
+            return ResponsesOK()
+
+        monkeypatch.setattr(theologian.requests, "post", mock_post)
+        result = theologian.generate_reflection(sample_quote)
+        assert calls["count"] == 2
+        assert result == "Consider where grace has met you this week."
+
+    def test_includes_gateway_token_header_when_set(self, sample_quote, monkeypatch):
+        class MockResponse:
+            status_code = 200
+
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {
+                    "choices": [{"message": {"content": "Reflection text"}}]
+                }
+
+        captured = {}
+
+        def mock_post(*args, **kwargs):
+            captured["headers"] = kwargs.get("headers")
+            return MockResponse()
+
+        monkeypatch.setattr(theologian.requests, "post", mock_post)
+        monkeypatch.setattr(theologian, "OPENCLAW_GATEWAY_TOKEN", "test-token")
+
+        result = theologian.generate_reflection(sample_quote)
+        assert result == "Reflection text"
+        assert captured["headers"] == {"Authorization": "Bearer test-token"}
+
 
 class TestSendToTelegram:
     def test_returns_false_without_env(self, monkeypatch):

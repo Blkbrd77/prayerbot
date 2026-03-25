@@ -27,6 +27,32 @@ THEOLOGIANS_FILE = DATA_DIR / "theologians.json"
 SENT_LOG = DATA_DIR / ".sent_quotes.json"
 
 OPENCLAW_PORT = int(os.environ.get("OPENCLAW_PORT", "18790"))
+OPENCLAW_GATEWAY_TOKEN = os.environ.get("OPENCLAW_GATEWAY_TOKEN", "")
+
+
+def _extract_reflection_text(data):
+    """Extract reflection text from chat completions or responses formats."""
+    if "choices" in data:
+        return data["choices"][0]["message"]["content"].strip()
+
+    output_text = data.get("output_text")
+    if output_text:
+        return output_text.strip()
+
+    for item in data.get("output", []):
+        for content in item.get("content", []):
+            text = content.get("text")
+            if text:
+                return text.strip()
+
+    return None
+
+
+def _gateway_headers():
+    """Build auth headers for local OpenClaw gateway calls."""
+    if OPENCLAW_GATEWAY_TOKEN:
+        return {"Authorization": f"Bearer {OPENCLAW_GATEWAY_TOKEN}"}
+    return {}
 
 
 def load_quotes():
@@ -108,16 +134,27 @@ def generate_reflection(quote):
         f'Provide a brief (2-3 sentence) reflection question or meditation prompt '
         f'for personal spiritual contemplation.'
     )
-    payload = {
+    chat_payload = {
         "model": "openai-codex",
         "messages": [{"role": "user", "content": prompt}],
         "max_tokens": 150,
     }
-    url = f"http://localhost:{OPENCLAW_PORT}/v1/chat/completions"
+    responses_payload = {
+        "model": "openai-codex",
+        "input": prompt,
+        "max_output_tokens": 150,
+    }
+    chat_url = f"http://localhost:{OPENCLAW_PORT}/v1/chat/completions"
+    responses_url = f"http://localhost:{OPENCLAW_PORT}/v1/responses"
     try:
-        response = requests.post(url, json=payload, timeout=15)
+        headers = _gateway_headers()
+        response = requests.post(chat_url, json=chat_payload, headers=headers, timeout=15)
+        if getattr(response, "status_code", 200) in (404, 405):
+            response = requests.post(
+                responses_url, json=responses_payload, headers=headers, timeout=15
+            )
         response.raise_for_status()
-        return response.json()["choices"][0]["message"]["content"].strip()
+        return _extract_reflection_text(response.json())
     except requests.RequestException as e:
         print(f"OpenClaw unavailable, skipping reflection: {e}")
         return None

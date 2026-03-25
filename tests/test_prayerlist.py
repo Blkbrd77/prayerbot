@@ -9,6 +9,8 @@ def patch_paths(tmp_data_dir, monkeypatch):
     """Redirect module-level file paths to the temporary data directory."""
     monkeypatch.setattr(prayerlist, "DATA_DIR", tmp_data_dir)
     monkeypatch.setattr(prayerlist, "PRAYERS_FILE", tmp_data_dir / "prayers.json")
+    monkeypatch.setattr(prayerlist, "DAILY_PRAYER_FILE", tmp_data_dir / "daily_prayers.json")
+    monkeypatch.setattr(prayerlist, "COMMAND_STATE_FILE", tmp_data_dir / "command_state.json")
 
 
 class TestLoadSavePrayers:
@@ -183,3 +185,40 @@ class TestSendReview:
 
         monkeypatch.setattr(prayerlist.requests, "post", lambda *a, **kw: MockResponse())
         assert prayerlist.send_review() is True
+
+
+class TestDailySchedule:
+    def test_load_daily_schedule_defaults(self):
+        schedule = prayerlist.load_daily_schedule()
+        assert set(schedule.keys()) == set(prayerlist.DAYS)
+
+    def test_set_day_theme(self):
+        day = prayerlist.set_day_theme("monday", "Family and peace")
+        assert day["theme"] == "Family and peace"
+
+    def test_add_day_prayer(self):
+        day = prayerlist.add_day_prayer("tuesday", "Pray for wisdom at work")
+        assert "Pray for wisdom at work" in day["prayers"]
+
+    def test_format_daily_prayer_list_contains_day(self):
+        from datetime import date
+        prayerlist.set_day_theme("monday", "Faith")
+        prayerlist.add_day_prayer("monday", "Pray for family")
+        msg = prayerlist.format_daily_prayer_list(target_date=date(2026, 3, 23))  # Monday
+        assert "Monday" in msg
+        assert "Pray for family" in msg
+
+
+class TestCommandParsing:
+    def test_parse_addprayer(self):
+        parsed = prayerlist.parse_command("/addprayer monday Pray for my son")
+        assert parsed["action"] == "add_prayer"
+        assert parsed["day"] == "monday"
+
+    def test_parse_settheme(self):
+        parsed = prayerlist.parse_command("/settheme sunday Rest and gratitude")
+        assert parsed["action"] == "set_theme"
+        assert parsed["day"] == "sunday"
+
+    def test_parse_invalid(self):
+        assert prayerlist.parse_command("/unknown command") is None

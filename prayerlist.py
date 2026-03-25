@@ -10,8 +10,15 @@ Usage:
     python prayerlist.py --answered <id>
     python prayerlist.py --list
     python prayerlist.py --review
+    python prayerlist.py --daily
+    python prayerlist.py --set-theme monday "Intercession for family"
+    python prayerlist.py --add-day-prayer monday "Pray for healing for mom"
+    python prayerlist.py --show-day monday
+    python prayerlist.py --poll-commands
 
-Cron (Sunday review): 0 7 * * 0 (7:00 AM Sundays)
+Cron:
+    0 4 * * * prayerlist.py --daily       (4:00 AM daily list)
+    0 7 * * 0 prayerlist.py --review      (7:00 AM Sundays)
 """
 
 import argparse
@@ -25,9 +32,90 @@ import requests
 
 DATA_DIR = Path(__file__).parent / "data"
 PRAYERS_FILE = DATA_DIR / "prayers.json"
+PRIVATE_DIR = Path(__file__).parent / ".private"
+DAILY_PRAYER_FILE = Path(os.environ.get("PRAYER_DAILY_FILE", PRIVATE_DIR / "daily_prayers.json"))
+COMMAND_STATE_FILE = Path(
+    os.environ.get("PRAYER_COMMAND_STATE_FILE", PRIVATE_DIR / "command_state.json")
+)
 
 CATEGORIES = ["healing", "guidance", "gratitude", "family",
               "provision", "world", "personal", "other"]
+DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+
+
+def _default_daily_schedule():
+    return {day: {"theme": "", "prayers": []} for day in DAYS}
+
+
+def load_daily_schedule():
+    """Load the private daily prayer schedule file."""
+    if not DAILY_PRAYER_FILE.exists():
+        return _default_daily_schedule()
+
+    with open(DAILY_PRAYER_FILE) as f:
+        data = json.load(f)
+
+    schedule = _default_daily_schedule()
+    for day in DAYS:
+        day_data = data.get(day, {})
+        schedule[day]["theme"] = str(day_data.get("theme", "")).strip()
+        prayers = day_data.get("prayers", [])
+        schedule[day]["prayers"] = [str(p).strip() for p in prayers if str(p).strip()]
+    return schedule
+
+
+def save_daily_schedule(schedule):
+    """Persist the private daily prayer schedule file."""
+    DAILY_PRAYER_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(DAILY_PRAYER_FILE, "w") as f:
+        json.dump(schedule, f, indent=2)
+
+
+def set_day_theme(day, theme):
+    """Set the theme for a specific day."""
+    day = day.lower()
+    if day not in DAYS:
+        raise ValueError(f"Invalid day: {day}")
+
+    schedule = load_daily_schedule()
+    schedule[day]["theme"] = theme.strip()
+    save_daily_schedule(schedule)
+    return schedule[day]
+
+
+def add_day_prayer(day, text):
+    """Add a prayer line item to a specific day."""
+    day = day.lower()
+    if day not in DAYS:
+        raise ValueError(f"Invalid day: {day}")
+
+    schedule = load_daily_schedule()
+    schedule[day]["prayers"].append(text.strip())
+    save_daily_schedule(schedule)
+    return schedule[day]
+
+
+def format_daily_prayer_list(target_date=None):
+    """Format and return the prayer list for a given day."""
+    target_date = target_date or date.today()
+    day = DAYS[target_date.weekday()]
+    entry = load_daily_schedule()[day]
+
+    lines = [f"🙏 *Daily Prayer List — {day.capitalize()}*"]
+
+    theme = entry.get("theme", "").strip()
+    if theme:
+        lines.append(f"\n*Theme:* {theme}")
+
+    prayers = entry.get("prayers", [])
+    if prayers:
+        lines.append("\n*Prayers:*")
+        for item in prayers:
+            lines.append(f"• {item}")
+    else:
+        lines.append("\n_No prayers listed for today yet._")
+
+    return "\n".join(lines)
 
 
 def load_prayers():
@@ -182,17 +270,10 @@ def format_review():
     return "\n".join(lines)
 
 
-def send_review():
-    """Send the weekly prayer review via Telegram.
-
-    Returns:
-        bool: True if sent successfully.
-    """
-    message = format_review()
-    print(message)
-
-    token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
-    chat_id = os.environ.get("TELEGRAM_CHAT_ID", "")
+def send_telegram_message(message, token=None, chat_id=None):
+    """Send a message to the configured Telegram chat."""
+    token = token or os.environ.get("TELEGRAM_BOT_TOKEN", "")
+    chat_id = chat_id or os.environ.get("TELEGRAM_CHAT_ID", "")
     if not token or not chat_id:
         print("Error: TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set.")
         return False
@@ -208,6 +289,120 @@ def send_review():
         return False
 
 
+def send_review():
+    """Send the weekly prayer review via Telegram.
+
+    Returns:
+        bool: True if sent successfully.
+    """
+    message = format_review()
+    print(message)
+    return send_telegram_message(message)
+
+
+def send_daily_list():
+    """Send today's daily prayer list to Telegram."""
+    message = format_daily_prayer_list()
+    print(message)
+    return send_telegram_message(message)
+
+
+def load_command_state():
+    if not COMMAND_STATE_FILE.exists():
+        return {"last_update_id": 0}
+    with open(COMMAND_STATE_FILE) as f:
+        return json.load(f)
+
+
+def save_command_state(state):
+    COMMAND_STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(COMMAND_STATE_FILE, "w") as f:
+        json.dump(state, f, indent=2)
+
+
+def parse_command(text):
+    """Parse Telegram command text into structured action."""
+    parts = text.strip().split(maxsplit=2)
+    if not parts:
+        return None
+
+    cmd = parts[0].lower()
+    if cmd in ("/addprayer", "/add_prayer"):
+        if len(parts) < 3:
+            return None
+        return {"action": "add_prayer", "day": parts[1].lower(), "text": parts[2].strip()}
+
+    if cmd in ("/settheme", "/set_theme"):
+        if len(parts) < 3:
+            return None
+        return {"action": "set_theme", "day": parts[1].lower(), "text": parts[2].strip()}
+
+    return None
+
+
+def poll_telegram_commands(max_updates=20):
+    """Poll Telegram updates and apply prayer day commands."""
+    token = os.environ.get("PRAYER_COMMAND_BOT_TOKEN") or os.environ.get("TELEGRAM_BOT_TOKEN", "")
+    chat_id = os.environ.get("TELEGRAM_CHAT_ID", "")
+    if not token or not chat_id:
+        print("Error: TELEGRAM_BOT_TOKEN/PRAYER_COMMAND_BOT_TOKEN and TELEGRAM_CHAT_ID are required.")
+        return 0
+
+    state = load_command_state()
+    offset = int(state.get("last_update_id", 0)) + 1
+    url = f"https://api.telegram.org/bot{token}/getUpdates"
+    params = {"offset": offset, "limit": max_updates, "timeout": 10}
+    try:
+        response = requests.get(url, params=params, timeout=20)
+        response.raise_for_status()
+        result = response.json().get("result", [])
+    except requests.RequestException as e:
+        print(f"Error polling Telegram updates: {e}")
+        return 0
+
+    processed = 0
+    for update in result:
+        update_id = int(update.get("update_id", 0))
+        message = update.get("message") or {}
+        incoming_chat = str((message.get("chat") or {}).get("id", ""))
+        text = (message.get("text") or "").strip()
+
+        state["last_update_id"] = max(int(state.get("last_update_id", 0)), update_id)
+        if not text or incoming_chat != str(chat_id):
+            continue
+
+        parsed = parse_command(text)
+        if not parsed:
+            continue
+
+        try:
+            if parsed["action"] == "add_prayer":
+                add_day_prayer(parsed["day"], parsed["text"])
+                send_telegram_message(
+                    f"Added prayer for {parsed['day'].capitalize()}: {parsed['text']}",
+                    token=token,
+                    chat_id=chat_id,
+                )
+                processed += 1
+            elif parsed["action"] == "set_theme":
+                set_day_theme(parsed["day"], parsed["text"])
+                send_telegram_message(
+                    f"Set theme for {parsed['day'].capitalize()}: {parsed['text']}",
+                    token=token,
+                    chat_id=chat_id,
+                )
+                processed += 1
+        except ValueError:
+            send_telegram_message(
+                "Invalid day. Use monday, tuesday, wednesday, thursday, friday, saturday, or sunday.",
+                token=token,
+                chat_id=chat_id,
+            )
+
+    save_command_state(state)
+    return processed
+
+
 def main():
     """Entry point: parse CLI args and dispatch to the appropriate action."""
     parser = argparse.ArgumentParser(description="Prayer list manager")
@@ -217,9 +412,27 @@ def main():
     group.add_argument("--answered", metavar="ID", help="Mark a prayer as answered")
     group.add_argument("--list", action="store_true", help="List active prayers")
     group.add_argument("--review", action="store_true", help="Send weekly review")
+    group.add_argument("--daily", action="store_true", help="Send today's daily prayer list")
+    group.add_argument(
+        "--set-theme", nargs=2, metavar=("DAY", "THEME"),
+        help="Set theme for a specific day"
+    )
+    group.add_argument(
+        "--add-day-prayer", nargs=2, metavar=("DAY", "TEXT"),
+        help="Add a prayer line item to a specific day"
+    )
+    group.add_argument("--show-day", metavar="DAY", help="Show schedule for one day")
+    group.add_argument(
+        "--poll-commands", action="store_true",
+        help="Poll Telegram for /addprayer and /settheme commands"
+    )
     parser.add_argument(
         "--category", choices=CATEGORIES, default="other",
         help="Category for --add"
+    )
+    parser.add_argument(
+        "--max-updates", type=int, default=20,
+        help="Max updates to fetch when using --poll-commands"
     )
     args = parser.parse_args()
 
@@ -244,6 +457,37 @@ def main():
                 print(f"[{p['id'][:8]}] ({p['category']}) {p['text']} — added {p['date_added']}")
     elif args.review:
         send_review()
+    elif args.daily:
+        send_daily_list()
+    elif args.set_theme:
+        day, theme = args.set_theme[0].lower(), args.set_theme[1]
+        try:
+            set_day_theme(day, theme)
+            print(f"Set {day.capitalize()} theme to: {theme}")
+        except ValueError as e:
+            print(str(e))
+    elif args.add_day_prayer:
+        day, text = args.add_day_prayer[0].lower(), args.add_day_prayer[1]
+        try:
+            add_day_prayer(day, text)
+            print(f"Added to {day.capitalize()}: {text}")
+        except ValueError as e:
+            print(str(e))
+    elif args.show_day:
+        day = args.show_day.lower()
+        if day not in DAYS:
+            print(f"Invalid day: {day}")
+        else:
+            schedule = load_daily_schedule()[day]
+            print(f"{day.capitalize()} theme: {schedule['theme'] or '(none)'}")
+            if schedule["prayers"]:
+                for item in schedule["prayers"]:
+                    print(f"- {item}")
+            else:
+                print("No prayers for this day yet.")
+    elif args.poll_commands:
+        processed = poll_telegram_commands(max_updates=args.max_updates)
+        print(f"Processed {processed} command(s).")
 
 
 if __name__ == "__main__":

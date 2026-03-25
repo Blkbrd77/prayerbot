@@ -33,8 +33,13 @@ prayerbot/
 - **Add** prayers with optional category and date
 - **Remove** prayers (mark as answered or delete)
 - **List** active prayers
+- **Daily list** — sends day-specific prayers/themes at **4:00 AM**
 - **Review** — weekly Sunday summary at **7:00 AM**
 - Persists to `data/prayers.json`
+- Private daily schedule persists to `.private/daily_prayers.json` (Pi-local, gitignored)
+- Telegram commands:
+  - `/addprayer monday Pray for ...`
+  - `/settheme monday Theme text`
 
 ### theologian.py — Theological Reflections
 - Selects a quote from `data/theologians.json`
@@ -79,13 +84,25 @@ cp .env.example .env
 nano .env   # or use your preferred editor
 ```
 
-Fill in the three values:
+Fill in the base values:
 
 | Variable | Description |
 |---|---|
 | `TELEGRAM_BOT_TOKEN` | Token from @BotFather |
 | `TELEGRAM_CHAT_ID` | Your chat ID — use [@userinfobot](https://t.me/userinfobot) |
 | `OPENCLAW_PORT` | Leave as `18790` unless you need a different port |
+
+Optional (recommended for this prayer list workflow):
+
+| Variable | Description |
+|---|---|
+| `PRAYER_DAILY_FILE` | Private JSON file for day-by-day prayer themes/list |
+| `PRAYER_COMMAND_STATE_FILE` | Stores Telegram update offset for command polling |
+| `PRAYER_COMMAND_BOT_TOKEN` | Optional separate bot token for prayer commands |
+
+> If OpenClaw is already handling Telegram messages on `TELEGRAM_BOT_TOKEN`,
+> use a dedicated `PRAYER_COMMAND_BOT_TOKEN` for `--poll-commands` so update
+> polling does not conflict.
 
 ---
 
@@ -130,11 +147,17 @@ other than `/home/pi/prayerbot`):
 # PrayerBot — daily scripture at 6:00 AM
 0 6 * * * /usr/bin/python3 /home/pi/prayerbot/scripture.py
 
+# PrayerBot — daily prayer list at 4:00 AM
+0 4 * * * cd /home/pi/prayerbot && set -a && source .env && set +a && /usr/bin/python3 prayerlist.py --daily
+
 # PrayerBot — evening theological reflection at 8:00 PM
 0 20 * * * /usr/bin/python3 /home/pi/prayerbot/theologian.py
 
 # PrayerBot — weekly Sunday prayer review at 7:00 AM
 0 7 * * 0 /usr/bin/python3 /home/pi/prayerbot/prayerlist.py --review
+
+# PrayerBot — process Telegram prayer commands every 5 minutes
+*/5 * * * * cd /home/pi/prayerbot && set -a && source .env && set +a && /usr/bin/python3 prayerlist.py --poll-commands
 ```
 
 ---

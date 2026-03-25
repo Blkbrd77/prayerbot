@@ -19,6 +19,7 @@ env/
 
 # Prayer data (user-specific)
 prayer-data/
+.private/
 
 # IDE
 .vscode/

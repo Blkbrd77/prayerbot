@@ -148,7 +148,7 @@ other than `/home/pi/prayerbot`):
 0 6 * * * /usr/bin/python3 /home/pi/prayerbot/scripture.py
 
 # PrayerBot — daily prayer list at 4:00 AM
-0 4 * * * cd /home/pi/prayerbot && set -a && source .env && set +a && /usr/bin/python3 prayerlist.py --daily
+0 4 * * * cd /home/pi/prayerbot && set -a && . .env && set +a && /usr/bin/python3 prayerlist.py --daily
 
 # PrayerBot — evening theological reflection at 8:00 PM
 0 20 * * * /usr/bin/python3 /home/pi/prayerbot/theologian.py
@@ -157,7 +157,7 @@ other than `/home/pi/prayerbot`):
 0 7 * * 0 /usr/bin/python3 /home/pi/prayerbot/prayerlist.py --review
 
 # PrayerBot — process Telegram prayer commands every 5 minutes
-*/5 * * * * cd /home/pi/prayerbot && set -a && source .env && set +a && /usr/bin/python3 prayerlist.py --poll-commands
+*/5 * * * * cd /home/pi/prayerbot && set -a && . .env && set +a && /usr/bin/python3 prayerlist.py --poll-commands
 ```
 
 ---
